@@ -16,7 +16,7 @@ class HomeScreen extends StatelessWidget {
               height: 80,
               margin: const EdgeInsets.symmetric(horizontal: 56, vertical: 18),
               decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 42, 49, 75),
+                  color: const Color.fromARGB(255, 42, 49, 75),
                   borderRadius: BorderRadius.circular(8),
                   border: Border.all(width: 1, color: Colors.white)),
               child: InkWell(
@@ -47,7 +47,15 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.settings_rounded,
+                      Icons.store_rounded,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const VerticalDivider(width: 1, thickness: 1, color: Colors.white),
+                  IconButton(
+                    onPressed: () {},
+                    icon: const Icon(
+                      Icons.info_rounded,
                       color: Colors.white,
                     ),
                   ),
@@ -63,15 +71,7 @@ class HomeScreen extends StatelessWidget {
                   IconButton(
                     onPressed: () {},
                     icon: const Icon(
-                      Icons.settings_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const VerticalDivider(width: 1, thickness: 1, color: Colors.white),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.settings_rounded,
+                      Icons.share_rounded,
                       color: Colors.white,
                     ),
                   ),
