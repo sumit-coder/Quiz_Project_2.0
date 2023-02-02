@@ -5,6 +5,7 @@ import 'package:quiz_project_2_0/views/constants/colors.dart';
 
 import 'views/screens/home_screen.dart';
 import 'views/screens/quiz_types/image_with_four_option_quiz/image_with_four_option_quiz.dart';
+import 'views/screens/quiz_types_list_screen.dart';
 
 void main() {
   MyUtility.changeStatusBarColor(newColor: MyColors.backgroundColor);
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       // home: const ImageWithFourOptionsQuiz(),
+      // home: const QuizTypesListScreen(),
     );
   }
 }
