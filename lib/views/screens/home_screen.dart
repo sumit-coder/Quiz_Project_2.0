@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_project_2_0/views/constants/colors.dart';
 
+import 'quiz_types_list_screen.dart';
+
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -9,74 +11,98 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColors.backgroundColor,
       body: SafeArea(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.end,
+        child: Stack(
           children: [
-            Container(
-              height: 80,
-              margin: const EdgeInsets.symmetric(horizontal: 56, vertical: 18),
-              decoration: BoxDecoration(
-                  color: const Color.fromARGB(255, 42, 49, 75),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(width: 1, color: Colors.white)),
-              child: InkWell(
-                onTap: () {},
-                child: const Center(
-                  child: Text(
-                    "PLAY",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w500,
+            Positioned.fill(
+              child: Image.asset(
+                'assets/images/bgPattern.png',
+                fit: BoxFit.cover,
+                // repeat: ImageRepeat.repeat,
+              ),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Container(
+                  height: 80,
+                  margin: const EdgeInsets.symmetric(horizontal: 56, vertical: 18),
+                  decoration: BoxDecoration(
+                    color: MyColors.buttonLightColor,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(width: 1, color: MyColors.darkBgColor),
+                  ),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const QuizTypesListScreen(),
+                        ),
+                      );
+                    },
+                    child: const Center(
+                      child: Text(
+                        "PLAY",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 18,
+                          fontWeight: FontWeight.w500,
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
-            ),
-            Container(
-              // margin: const EdgeInsets.symmetric(horizontal: 56, vertical: 8),
-              margin: const EdgeInsets.only(left: 56, right: 56, bottom: 56),
-              height: 52,
-              decoration: BoxDecoration(
-                  color: Color.fromARGB(255, 42, 49, 75),
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(width: 1, color: Colors.white)),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.store_rounded,
-                      color: Colors.white,
-                    ),
+                Container(
+                  // margin: const EdgeInsets.symmetric(horizontal: 56, vertical: 8),
+                  margin: const EdgeInsets.only(left: 56, right: 56, bottom: 56, top: 12),
+                  height: 52,
+                  decoration: BoxDecoration(
+                    color: MyColors.buttonLightColor,
+                    borderRadius: BorderRadius.circular(8),
+                    border: Border.all(width: 1, color: MyColors.darkBgColor),
                   ),
-                  const VerticalDivider(width: 1, thickness: 1, color: Colors.white),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.info_rounded,
-                      color: Colors.white,
-                    ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      IconButton(
+                        splashRadius: 25,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.store_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const VerticalDivider(width: 1, thickness: 1, color: MyColors.darkBgColor),
+                      IconButton(
+                        splashRadius: 25,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.info_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const VerticalDivider(width: 1, thickness: 1, color: MyColors.darkBgColor),
+                      IconButton(
+                        splashRadius: 25,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.settings_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                      const VerticalDivider(width: 1, thickness: 1, color: MyColors.darkBgColor),
+                      IconButton(
+                        splashRadius: 25,
+                        onPressed: () {},
+                        icon: const Icon(
+                          Icons.share_rounded,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
-                  const VerticalDivider(width: 1, thickness: 1, color: Colors.white),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.settings_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                  const VerticalDivider(width: 1, thickness: 1, color: Colors.white),
-                  IconButton(
-                    onPressed: () {},
-                    icon: const Icon(
-                      Icons.share_rounded,
-                      color: Colors.white,
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           ],
         ),
