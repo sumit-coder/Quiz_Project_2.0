@@ -1,7 +1,7 @@
 List<Map> rowData = [
   {
     "question": "hy how to doing!1",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing',
       'option2',
@@ -11,7 +11,7 @@ List<Map> rowData = [
   },
   {
     "question": "hy how to doing!2",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing1',
       'option2',
@@ -21,7 +21,7 @@ List<Map> rowData = [
   },
   {
     "question": "hy how to doing!3",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing2',
       'option2',
