@@ -1,7 +1,7 @@
 List<Map> rowData = [
   {
     "question": "hy how to doing!1",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing',
       'option2',
@@ -11,7 +11,7 @@ List<Map> rowData = [
   },
   {
     "question": "hy how to doing!2",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing1',
       'option2',
@@ -21,7 +21,7 @@ List<Map> rowData = [
   },
   {
     "question": "hy how to doing!3",
-    "answar": 'nothing',
+    "answer": 'nothing',
     "options": [
       'nothing2',
       'option2',
@@ -43,19 +43,22 @@ List<Map> quizTypes = [
     "quizTypeName": "4 Option Image",
     "colorCodeLight": "0xFFF7B500",
     "colorCodeDark": "0xFFE3A402",
-    "posterImageUrl": "https://freepngimg.com/thumb/cartoon/36530-9-cartoon-hd.png",
+    "posterImageUrl":
+        "https://freepngimg.com/thumb/cartoon/36530-9-cartoon-hd.png",
   },
   {
     "quizTypeName": "4 Option Image",
     "colorCodeLight": "0xFF5C7CFF",
     "colorCodeDark": "0xFF4565F6",
-    "posterImageUrl": "https://freepngimg.com/download/cartoon/36403-7-cartoon-photos.png",
+    "posterImageUrl":
+        "https://freepngimg.com/download/cartoon/36403-7-cartoon-photos.png",
   },
   {
     "quizTypeName": "4 Option Image",
     "colorCodeLight": "0xFF5C7CFF",
     "colorCodeDark": "0xFF4565F6",
-    "posterImageUrl": "https://cdn.pixabay.com/photo/2018/12/03/21/22/cartoon-3854292_1280.png",
+    "posterImageUrl":
+        "https://cdn.pixabay.com/photo/2018/12/03/21/22/cartoon-3854292_1280.png",
   },
 ];
 
