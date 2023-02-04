@@ -25,8 +25,8 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         backgroundColor: MyTextColor.textColorDark,
       ),
-      home: const HomeScreen(),
-      // home: const ImageWithFourOptionsQuiz(),
+      // home: const HomeScreen(),
+      home: const ImageWithFourOptionsQuiz(),
       // home: const QuizTypesListScreen(),
     );
   }
