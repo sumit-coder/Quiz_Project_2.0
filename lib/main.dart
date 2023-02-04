@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quiz_project_2_0/utility/utility_functions.dart';
 import 'package:quiz_project_2_0/views/constants/colors.dart';
+import 'package:quiz_project_2_0/views/screens/quiz_types/true_or_false_quiz/true_or_false_quiz_screen.dart';
 
 import 'views/screens/home_screen.dart';
 import 'views/screens/quiz_types/image_with_four_option_quiz/image_with_four_option_quiz.dart';
@@ -25,8 +26,9 @@ class MyApp extends StatelessWidget {
         backgroundColor: MyTextColor.textColorDark,
       ),
       // home: const HomeScreen(),
-      home: const ImageWithFourOptionsQuiz(),
+      // home: const ImageWithFourOptionsQuiz(),
       // home: const QuizTypesListScreen(),
+      home: const TrueAndFalsequizScreen(),
     );
   }
 }

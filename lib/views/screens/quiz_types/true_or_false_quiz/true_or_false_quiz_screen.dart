@@ -119,7 +119,7 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
                     ),
                     children: [
                       TextSpan(
-                        text: rowData[currentQuestionIndex]['question'],
+                        text: rowData[currentQuestionIndex].question,
                         style: const TextStyle(
                           fontWeight: FontWeight.w400,
                         ),
@@ -141,8 +141,8 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
                             selectedOptionIndex = 0;
                           });
                         },
-                        optionTitle: rowData[currentQuestionIndex]["options"]
-                            [0],
+                        optionTitle: "True",
+                        buttonBackgroundColor: Colors.green,
                       ),
                       const SizedBox(width: 20),
                       TrueFalseOptionCard(
@@ -152,8 +152,8 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
                             selectedOptionIndex = 1;
                           });
                         },
-                        optionTitle: rowData[currentQuestionIndex]["options"]
-                            [1],
+                        optionTitle: "False",
+                        buttonBackgroundColor: Colors.red,
                       ),
                     ],
                   ),
@@ -167,24 +167,31 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
   }
 }
 
-class TrueFalseOptionCard extends StatelessWidget {
+class TrueFalseOptionCard extends StatefulWidget {
   const TrueFalseOptionCard({
     Key? key,
     required this.isSelected,
     required this.onTapOption,
     required this.optionTitle,
+    required this.buttonBackgroundColor,
   });
 
   final bool isSelected;
   final VoidCallback onTapOption;
   final String optionTitle;
+  final Color buttonBackgroundColor;
 
+  @override
+  State<TrueFalseOptionCard> createState() => _TrueFalseOptionCardState();
+}
+
+class _TrueFalseOptionCardState extends State<TrueFalseOptionCard> {
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 500),
       child: InkWell(
-        onTap: onTapOption,
+        onTap: widget.onTapOption,
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -192,10 +199,10 @@ class TrueFalseOptionCard extends StatelessWidget {
               alignment: Alignment.center,
               width: 150,
               height: 150,
-              color: isSelected ? Colors.green : MyColors.buttonLightColor,
-              child: const Text(
-                "TRUE",
-                style: TextStyle(
+              color: widget.buttonBackgroundColor,
+              child: Text(
+                widget.optionTitle,
+                style: const TextStyle(
                   fontSize: 30,
                 ),
               ),
