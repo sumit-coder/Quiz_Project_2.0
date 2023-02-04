@@ -1,34 +1,27 @@
-List<Map> rowData = [
-  {
-    "question": "hy how to doing!1",
-    "answer": 'nothing',
-    "options": [
-      'nothing',
-      'option2',
-      'option3',
-      'option4',
-    ],
-  },
-  {
-    "question": "hy how to doing!2",
-    "answer": 'nothing',
-    "options": [
-      'nothing1',
-      'option2',
-      'option3',
-      'option4',
-    ],
-  },
-  {
-    "question": "hy how to doing!3",
-    "answer": 'nothing',
-    "options": [
-      'nothing2',
-      'option2',
-      'option3',
-      'option4',
-    ],
-  }
+import '../models/question_model.dart';
+
+List<Question> rowData = [
+  Question(
+    id: '1',
+    question: 'hy how to doing!1',
+    options: ['nothing', 'option2', 'option3', 'option4'],
+    currectAnswer: 'nothing',
+    currectAnswerIndex: 0,
+  ),
+  Question(
+    id: '2',
+    question: 'hy how to doing!2',
+    options: ['nothing', 'option2', 'option3', 'option4'],
+    currectAnswer: 'option2',
+    currectAnswerIndex: 2,
+  ),
+  Question(
+    id: '3',
+    question: 'hy how to doing!3',
+    options: ['nothing', 'option2', 'option3', 'option4'],
+    currectAnswer: 'option4',
+    currectAnswerIndex: 3,
+  ),
 ];
 
 List<Map> quizTypes = [

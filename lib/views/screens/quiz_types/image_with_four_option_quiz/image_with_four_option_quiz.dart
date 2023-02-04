@@ -1,7 +1,9 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 import '../../../rowData.dart';
+import 'quiz_end_screen.dart';
 
 class ImageWithFourOptionsQuiz extends StatefulWidget {
   const ImageWithFourOptionsQuiz({Key? key}) : super(key: key);
@@ -13,6 +15,86 @@ class ImageWithFourOptionsQuiz extends StatefulWidget {
 class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
   int? selectedOptiionIndex;
   int currentQuestionIndex = 0;
+  List<Map> selectedAnswersOfTheQuestions = [
+    // {
+    //   "q-id": "123",
+    //   "answer-result": true,
+    //   "selected-option-index": 1,
+    // },
+  ];
+
+  // For Each Question Change
+  bool isNextButtonDisabled = true;
+
+  ///this Function for Reseting all selected
+  void resetAll() {
+    selectedOptiionIndex = null;
+    currentQuestionIndex = 0;
+    isNextButtonDisabled = true;
+    setState(() {});
+  }
+
+  /// This function will check if selected option is right answer
+  void checkSelectedAnswerAndSetValues() {
+    // rowData[currentQuestionIndex].options
+
+    if (rowData[currentQuestionIndex].currectAnswer ==
+        rowData[currentQuestionIndex].options[selectedOptiionIndex ?? 0]) {
+      log("this is right");
+
+      // when answer is right
+      selectedAnswersOfTheQuestions.add(
+        {
+          "q-id": currentQuestionIndex.toString(),
+          "answer-result": true,
+          "selected-option-index": selectedOptiionIndex,
+        },
+      );
+    } else {
+      // when answer is wrong
+      selectedAnswersOfTheQuestions.add(
+        {
+          "q-id": currentQuestionIndex.toString(),
+          "answer-result": false,
+          "selected-option-index": selectedOptiionIndex,
+        },
+      );
+    }
+  }
+
+  /// This function will set active to taped answer option
+  void setActiveSelectedOption({required int optionIndex}) {
+    selectedOptiionIndex = optionIndex;
+    isNextButtonDisabled = false;
+    checkSelectedAnswerAndSetValues();
+    setState(() {});
+  }
+
+  /// On Tap next Button
+  void onTapNexButton() {
+    if (currentQuestionIndex < rowData.length - 1) {
+      currentQuestionIndex++;
+    } else {
+      // print('last aswer');
+      // when current question is last question and submited the option
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => QuizEndScren(listOfAnswers: selectedAnswersOfTheQuestions),
+        ),
+      );
+      resetAll();
+
+      return;
+    }
+    // make this button disable after send to next question
+    isNextButtonDisabled = true;
+    // Clear selected answer option for next question
+    selectedOptiionIndex = null;
+
+    // setState
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -113,7 +195,7 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                         ),
                         children: [
                           TextSpan(
-                            text: rowData[currentQuestionIndex]['question'],
+                            text: rowData[currentQuestionIndex].question,
                             style: const TextStyle(
                               fontWeight: FontWeight.w400,
                             ),
@@ -131,39 +213,31 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                 child: Column(
                   children: [
                     QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex]["options"][0],
+                      optionTitle: rowData[currentQuestionIndex].options[0],
                       isSelected: selectedOptiionIndex == 0 ? true : false,
                       onTapOption: () {
-                        setState(() {
-                          selectedOptiionIndex = 0;
-                        });
+                        setActiveSelectedOption(optionIndex: 0);
                       },
                     ),
                     QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex]["options"][1],
+                      optionTitle: rowData[currentQuestionIndex].options[1],
                       isSelected: selectedOptiionIndex == 1 ? true : false,
                       onTapOption: () {
-                        setState(() {
-                          selectedOptiionIndex = 1;
-                        });
+                        setActiveSelectedOption(optionIndex: 1);
                       },
                     ),
                     QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex]["options"][2],
+                      optionTitle: rowData[currentQuestionIndex].options[2],
                       isSelected: selectedOptiionIndex == 2 ? true : false,
                       onTapOption: () {
-                        setState(() {
-                          selectedOptiionIndex = 2;
-                        });
+                        setActiveSelectedOption(optionIndex: 2);
                       },
                     ),
                     QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex]["options"][3],
+                      optionTitle: rowData[currentQuestionIndex].options[3],
                       isSelected: selectedOptiionIndex == 3 ? true : false,
                       onTapOption: () {
-                        setState(() {
-                          selectedOptiionIndex = 3;
-                        });
+                        setActiveSelectedOption(optionIndex: 3);
                       },
                     ),
                   ],
@@ -173,20 +247,10 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
 
             BigButton(
               buttonColor: MyColors.primaryColor,
-              buttonTitle: 'Submit',
-              onTapButton: () {
-                if (currentQuestionIndex < rowData.length - 1) {
-                  setState(() {
-                    currentQuestionIndex++;
-                  });
-                } else {}
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const QuizEndScreen(),
-                //   ),
-                // );
-              },
+              buttonTitle: rowData.length - 1 == currentQuestionIndex ? "Submit" : 'Next',
+              // if it's last question then show "Submit" else show "Next"
+              isDisabled: isNextButtonDisabled,
+              onTapButton: onTapNexButton,
             ),
           ],
         ),
@@ -220,40 +284,7 @@ class QuestionOptionCard extends StatelessWidget {
       ),
       duration: const Duration(milliseconds: 300),
       // alignment: Alignment.center,
-      child:
-          // isSelected
-          // ? Row(
-          //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //     children: [
-          //       Row(
-          //         children: [
-          //           const SizedBox(width: 24 + 48),
-          //           Text(
-          //             optionTitle,
-          //             style: const TextStyle(
-          //               color: Colors.white,
-          //               fontSize: 18,
-          //               fontWeight: FontWeight.w500,
-          //             ),
-          //           ),
-          //         ],
-          //       ),
-          //       InkWell(
-          //         onTap: onTapOption,
-          //         child: const CircleAvatar(
-          //           radius: 23,
-          //           backgroundColor: MyColors.cardColor,
-          //           child: Icon(
-          //             Icons.clear_rounded,
-          //             size: 28,
-          //             color: MyColors.primaryColor,
-          //           ),
-          //         ),
-          //       ),
-          //     ],
-          //   )
-          // :
-          InkWell(
+      child: InkWell(
         borderRadius: BorderRadius.circular(30),
         onTap: onTapOption,
         child: Stack(
@@ -316,12 +347,14 @@ class BigButton extends StatelessWidget {
     required this.onTapButton,
     required this.buttonColor,
     this.buttonTitleColor,
+    this.isDisabled,
   }) : super(key: key);
 
   final String buttonTitle;
   final VoidCallback onTapButton;
   final Color buttonColor;
   Color? buttonTitleColor;
+  bool? isDisabled;
 
   @override
   Widget build(BuildContext context) {
@@ -329,11 +362,11 @@ class BigButton extends StatelessWidget {
       height: 58,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
-        color: buttonColor,
+        color: isDisabled == true ? Color.fromARGB(255, 185, 103, 35) : buttonColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: InkWell(
-        onTap: onTapButton,
+        onTap: isDisabled == true ? null : onTapButton,
         child: Center(
           child: Text(
             buttonTitle,
