@@ -1,21 +1,21 @@
-import '../models/question_model.dart';
+import '../models/options_question_model.dart';
 
-List<Question> rowData = [
-  Question(
+List<OptionsQuestion> rowData = [
+  OptionsQuestion(
     id: '1',
     question: 'hy how to doing!1',
     options: ['nothing', 'option2', 'option3', 'option4'],
     currectAnswer: 'nothing',
     currectAnswerIndex: 0,
   ),
-  Question(
+  OptionsQuestion(
     id: '2',
     question: 'hy how to doing!2',
     options: ['nothing', 'option2', 'option3', 'option4'],
     currectAnswer: 'option2',
     currectAnswerIndex: 2,
   ),
-  Question(
+  OptionsQuestion(
     id: '3',
     question: 'hy how to doing!3',
     options: ['nothing', 'option2', 'option3', 'option4'],

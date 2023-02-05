@@ -3,6 +3,7 @@ import 'package:quiz_project_2_0/views/constants/colors.dart';
 import 'package:quiz_project_2_0/views/screens/quiz_types/true_or_false_quiz/true_or_false_quiz_screen.dart';
 
 import '../rowData.dart';
+import '../widgets/max_width_bound_widget.dart';
 import 'quiz_types/image_with_four_option_quiz/image_with_four_option_quiz.dart';
 
 class QuizTypesListScreen extends StatelessWidget {
@@ -13,28 +14,27 @@ class QuizTypesListScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: MyColors.backgroundColor,
       body: SafeArea(
-        child: Container(
-          child: ListView.builder(
-            padding: const EdgeInsets.only(
-                left: 18, right: 18, bottom: 18, top: 104),
-            itemCount: quizTypes.length,
-            itemBuilder: (BuildContext context, int index) {
-              return QuizTypeCard(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const TrueAndFalsequizScreen(),
-                    ),
-                  );
-                },
-                cardBgColorLight:
-                    Color(int.parse(quizTypes[index]['colorCodeLight'])),
-                cardBgColorDark:
-                    Color(int.parse(quizTypes[index]['colorCodeDark'])),
-                posterImageUrl: quizTypes[index]['posterImageUrl'],
-              );
-            },
+        child: MaxWidthAndHeightBound(
+          child: Container(
+            child: ListView.builder(
+              padding: const EdgeInsets.only(left: 18, right: 18, bottom: 18, top: 104),
+              itemCount: quizTypes.length,
+              itemBuilder: (BuildContext context, int index) {
+                return QuizTypeCard(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const TrueAndFalsequizScreen(),
+                      ),
+                    );
+                  },
+                  cardBgColorLight: Color(int.parse(quizTypes[index]['colorCodeLight'])),
+                  cardBgColorDark: Color(int.parse(quizTypes[index]['colorCodeDark'])),
+                  posterImageUrl: quizTypes[index]['posterImageUrl'],
+                );
+              },
+            ),
           ),
         ),
       ),
