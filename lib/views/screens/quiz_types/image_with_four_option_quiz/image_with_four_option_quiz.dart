@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 import '../../../rowData.dart';
+import '../../../widgets/max_width_bound_widget.dart';
 import 'quiz_end_screen.dart';
 
 class ImageWithFourOptionsQuiz extends StatefulWidget {
@@ -151,117 +152,119 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
         ),
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            // question number and timer
-            Container(
-              // color: Colors.red,
-              // constraints: const BoxConstraints(minHeight: 220),
-              padding: const EdgeInsets.all(18),
-              child: Column(
-                children: [
-                  const SizedBox(height: 24),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Quiz: ${rowData.length}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w400,
+        child: MaxWidthAndHeightBound(
+          child: Column(
+            children: [
+              // question number and timer
+              Container(
+                // color: Colors.red,
+                // constraints: const BoxConstraints(minHeight: 220),
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 24),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          'Quiz: ${rowData.length}',
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
                         ),
-                      ),
-                      const Text(
-                        '03:00 min',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
+                        const Text(
+                          '03:00 min',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 4),
+                    const Divider(height: 1, thickness: 1, color: Colors.white),
+                    const SizedBox(height: 8),
+                  ],
+                ),
+              ),
+              Container(
+                color: Colors.red,
+                alignment: Alignment.topLeft,
+                margin: const EdgeInsets.only(left: 18, right: 18),
+                constraints: const BoxConstraints(maxWidth: 400),
+                // height: 200,
+                child: RichText(
+                  textAlign: TextAlign.start,
+                  text: TextSpan(
+                    text: '${currentQuestionIndex + 1}. ',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: rowData[currentQuestionIndex].question,
+                        style: const TextStyle(
                           fontWeight: FontWeight.w400,
                         ),
                       ),
                     ],
                   ),
-                  const SizedBox(height: 4),
-                  const Divider(height: 1, thickness: 1, color: Colors.white),
-                  const SizedBox(height: 8),
-                ],
+                ),
               ),
-            ),
-            Container(
-              color: Colors.red,
-              alignment: Alignment.topLeft,
-              margin: const EdgeInsets.only(left: 18, right: 18),
-              constraints: const BoxConstraints(maxWidth: 400),
-              // height: 200,
-              child: RichText(
-                textAlign: TextAlign.start,
-                text: TextSpan(
-                  text: '${currentQuestionIndex + 1}. ',
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  children: [
-                    TextSpan(
-                      text: rowData[currentQuestionIndex].question,
-                      style: const TextStyle(
-                        fontWeight: FontWeight.w400,
+              Expanded(
+                child: Container(
+                  padding: const EdgeInsets.only(left: 24, right: 24),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      QuestionOptionCard(
+                        optionTitle: rowData[currentQuestionIndex].options[0],
+                        isSelected: selectedOptiionIndex == 0 ? true : false,
+                        onTapOption: () {
+                          setActiveSelectedOption(optionIndex: 0);
+                        },
                       ),
-                    ),
-                  ],
+                      QuestionOptionCard(
+                        optionTitle: rowData[currentQuestionIndex].options[1],
+                        isSelected: selectedOptiionIndex == 1 ? true : false,
+                        onTapOption: () {
+                          setActiveSelectedOption(optionIndex: 1);
+                        },
+                      ),
+                      QuestionOptionCard(
+                        optionTitle: rowData[currentQuestionIndex].options[2],
+                        isSelected: selectedOptiionIndex == 2 ? true : false,
+                        onTapOption: () {
+                          setActiveSelectedOption(optionIndex: 2);
+                        },
+                      ),
+                      QuestionOptionCard(
+                        optionTitle: rowData[currentQuestionIndex].options[3],
+                        isSelected: selectedOptiionIndex == 3 ? true : false,
+                        onTapOption: () {
+                          setActiveSelectedOption(optionIndex: 3);
+                        },
+                      ),
+                      const SizedBox(height: 12),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            Expanded(
-              child: Container(
-                padding: const EdgeInsets.only(left: 24, right: 24),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex].options[0],
-                      isSelected: selectedOptiionIndex == 0 ? true : false,
-                      onTapOption: () {
-                        setActiveSelectedOption(optionIndex: 0);
-                      },
-                    ),
-                    QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex].options[1],
-                      isSelected: selectedOptiionIndex == 1 ? true : false,
-                      onTapOption: () {
-                        setActiveSelectedOption(optionIndex: 1);
-                      },
-                    ),
-                    QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex].options[2],
-                      isSelected: selectedOptiionIndex == 2 ? true : false,
-                      onTapOption: () {
-                        setActiveSelectedOption(optionIndex: 2);
-                      },
-                    ),
-                    QuestionOptionCard(
-                      optionTitle: rowData[currentQuestionIndex].options[3],
-                      isSelected: selectedOptiionIndex == 3 ? true : false,
-                      onTapOption: () {
-                        setActiveSelectedOption(optionIndex: 3);
-                      },
-                    ),
-                    const SizedBox(height: 12),
-                  ],
-                ),
-              ),
-            ),
 
-            BigButton(
-              buttonColor: MyColors.primaryColor,
-              buttonTitle: rowData.length - 1 == currentQuestionIndex ? "Submit" : 'Next',
-              // if it's last question then show "Submit" else show "Next"
-              isDisabled: isNextButtonDisabled,
-              onTapButton: onTapNexButton,
-            ),
-          ],
+              BigButton(
+                buttonColor: MyColors.primaryColor,
+                buttonTitle: rowData.length - 1 == currentQuestionIndex ? "Submit" : 'Next',
+                // if it's last question then show "Submit" else show "Next"
+                isDisabled: isNextButtonDisabled,
+                onTapButton: onTapNexButton,
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -375,6 +378,7 @@ class BigButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(12),
       ),
       child: InkWell(
+        borderRadius: BorderRadius.circular(12),
         onTap: isDisabled == true ? null : onTapButton,
         child: Center(
           child: Text(

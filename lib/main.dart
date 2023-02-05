@@ -20,15 +20,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+
       title: 'Quiz Project 2.0',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-        backgroundColor: MyTextColor.textColorDark,
+        useMaterial3: true,
+        colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.blue).copyWith(
+          background: MyColors.backgroundColor,
+        ),
       ),
       // home: const HomeScreen(),
-      // home: const ImageWithFourOptionsQuiz(),
+      home: const ImageWithFourOptionsQuiz(),
       // home: const QuizTypesListScreen(),
-      home: const TrueAndFalsequizScreen(),
+      // home: const TrueAndFalsequizScreen(),
     );
   }
 }
