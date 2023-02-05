@@ -1,11 +1,11 @@
-class Question {
+class OptionsQuestion {
   final String id;
   final String question;
   final String currectAnswer;
   final int currectAnswerIndex;
   final List<String> options;
 
-  Question({
+  OptionsQuestion({
     required this.id,
     required this.question,
     required this.currectAnswer,

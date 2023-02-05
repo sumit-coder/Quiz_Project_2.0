@@ -15,13 +15,7 @@ class ImageWithFourOptionsQuiz extends StatefulWidget {
 class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
   int? selectedOptiionIndex;
   int currentQuestionIndex = 0;
-  List<Map> selectedAnswersOfTheQuestions = [
-    // {
-    //   "q-id": "123",
-    //   "answer-result": true,
-    //   "selected-option-index": 1,
-    // },
-  ];
+  List<Map> selectedAnswersOfTheQuestions = [];
 
   // For Each Question Change
   bool isNextButtonDisabled = true;
@@ -31,6 +25,11 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
     selectedOptiionIndex = null;
     currentQuestionIndex = 0;
     isNextButtonDisabled = true;
+    // set answers to empty in case use come back form
+    // quiz end screen
+    Future.delayed(const Duration(seconds: 2), () {
+      selectedAnswersOfTheQuestions = [];
+    });
     setState(() {});
   }
 
@@ -64,10 +63,13 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
 
   /// This function will set active to taped answer option
   void setActiveSelectedOption({required int optionIndex}) {
-    selectedOptiionIndex = optionIndex;
-    isNextButtonDisabled = false;
-    checkSelectedAnswerAndSetValues();
-    setState(() {});
+    // only if any option is allready not selected
+    if (selectedOptiionIndex == null) {
+      selectedOptiionIndex = optionIndex;
+      isNextButtonDisabled = false;
+      checkSelectedAnswerAndSetValues();
+      setState(() {});
+    }
   }
 
   /// On Tap next Button
@@ -153,7 +155,8 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
           children: [
             // question number and timer
             Container(
-              constraints: const BoxConstraints(minHeight: 220),
+              // color: Colors.red,
+              // constraints: const BoxConstraints(minHeight: 220),
               padding: const EdgeInsets.all(18),
               child: Column(
                 children: [
@@ -181,36 +184,41 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                   ),
                   const SizedBox(height: 4),
                   const Divider(height: 1, thickness: 1, color: Colors.white),
-                  const SizedBox(height: 24),
-                  Container(
-                    alignment: Alignment.topLeft,
-                    child: RichText(
-                      textAlign: TextAlign.start,
-                      text: TextSpan(
-                        text: '${currentQuestionIndex + 1}. ',
-                        style: const TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: rowData[currentQuestionIndex].question,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
+                  const SizedBox(height: 8),
+                ],
+              ),
+            ),
+            Container(
+              color: Colors.red,
+              alignment: Alignment.topLeft,
+              margin: const EdgeInsets.only(left: 18, right: 18),
+              constraints: const BoxConstraints(maxWidth: 400),
+              // height: 200,
+              child: RichText(
+                textAlign: TextAlign.start,
+                text: TextSpan(
+                  text: '${currentQuestionIndex + 1}. ',
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: rowData[currentQuestionIndex].question,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w400,
                       ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
             Expanded(
               child: Container(
                 padding: const EdgeInsets.only(left: 24, right: 24),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     QuestionOptionCard(
                       optionTitle: rowData[currentQuestionIndex].options[0],
@@ -240,6 +248,7 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                         setActiveSelectedOption(optionIndex: 3);
                       },
                     ),
+                    const SizedBox(height: 12),
                   ],
                 ),
               ),
@@ -295,7 +304,7 @@ class QuestionOptionCard extends StatelessWidget {
               bottom: 0,
               top: 0,
               right: isSelected ? 0 : null,
-              duration: Duration(milliseconds: 1000),
+              duration: const Duration(milliseconds: 1000),
               child: CircleAvatar(
                 radius: 23,
                 backgroundColor: isSelected ? MyColors.cardColor : MyColors.primaryColor,
@@ -321,7 +330,7 @@ class QuestionOptionCard extends StatelessWidget {
               left: 58,
               // right: 0,
               bottom: 0,
-              duration: Duration(milliseconds: 500),
+              duration: const Duration(milliseconds: 500),
               child: Center(
                 child: Text(
                   optionTitle,
@@ -362,7 +371,7 @@ class BigButton extends StatelessWidget {
       height: 58,
       margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
       decoration: BoxDecoration(
-        color: isDisabled == true ? Color.fromARGB(255, 185, 103, 35) : buttonColor,
+        color: isDisabled == true ? const Color.fromARGB(255, 185, 103, 35) : buttonColor,
         borderRadius: BorderRadius.circular(12),
       ),
       child: InkWell(
