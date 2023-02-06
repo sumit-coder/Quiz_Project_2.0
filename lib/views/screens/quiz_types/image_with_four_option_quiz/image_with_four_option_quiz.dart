@@ -191,28 +191,37 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                 ),
               ),
               Container(
-                color: Colors.red,
-                alignment: Alignment.topLeft,
-                margin: const EdgeInsets.only(left: 18, right: 18),
-                constraints: const BoxConstraints(maxWidth: 400),
+                // color: Colors.red,
+                // alignment: Alignment.topLeft,
+                // alignment: Alignment.center,
+                margin: const EdgeInsets.only(left: 20, right: 20),
+                constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
                 // height: 200,
-                child: RichText(
-                  textAlign: TextAlign.start,
-                  text: TextSpan(
-                    text: '${currentQuestionIndex + 1}. ',
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: rowData[currentQuestionIndex].question,
-                        style: const TextStyle(
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                    ],
+                // child: RichText(
+                //   textAlign: TextAlign.start,
+                //   text: TextSpan(
+                //     text: '${currentQuestionIndex + 1}. ',
+                //     style: const TextStyle(
+                //       color: Colors.white,
+                //       fontSize: 16,
+                //       fontWeight: FontWeight.w600,
+                //     ),
+                //     children: [
+                //       TextSpan(
+                //         text: rowData[currentQuestionIndex].question,
+                //         style: const TextStyle(
+                //           fontWeight: FontWeight.w400,
+                //         ),
+                //       ),
+                //     ],
+                //   ),
+                // ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: Image.asset(
+                    'assets/images/test-image-for-quiz.jpg',
+                    fit: BoxFit.cover,
+                    width: 400,
                   ),
                 ),
               ),
