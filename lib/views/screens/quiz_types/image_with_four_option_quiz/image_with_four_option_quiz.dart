@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../constants/colors.dart';
 import '../../../rowData.dart';
+import '../../../widgets/counter_widget.dart';
 import '../../../widgets/max_width_bound_widget.dart';
 import 'quiz_end_screen.dart';
 
@@ -174,14 +175,7 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                             fontWeight: FontWeight.w400,
                           ),
                         ),
-                        const Text(
-                          '03:00 min',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
+                        TimeCounter(),
                       ],
                     ),
                     const SizedBox(height: 4),
@@ -195,7 +189,7 @@ class _ImageWithFourOptionsQuizState extends State<ImageWithFourOptionsQuiz> {
                 // alignment: Alignment.topLeft,
                 // alignment: Alignment.center,
                 margin: const EdgeInsets.only(left: 20, right: 20),
-                constraints: const BoxConstraints(maxWidth: 400, maxHeight: 200),
+                constraints: const BoxConstraints(maxWidth: 400, maxHeight: 220),
                 // height: 200,
                 // child: RichText(
                 //   textAlign: TextAlign.start,
