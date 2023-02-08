@@ -28,8 +28,8 @@ class MyApp extends StatelessWidget {
           background: MyColors.backgroundColor,
         ),
       ),
-      // home: const HomeScreen(),
-      home: const ImageWithFourOptionsQuiz(),
+      home: const HomeScreen(),
+      // home: const ImageWithFourOptionsQuiz(),
       // home: const QuizTypesListScreen(),
       // home: const TrueAndFalsequizScreen(),
     );

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:html';
 
 import 'package:flutter/material.dart';
 
@@ -11,6 +10,25 @@ class TimeCounter extends StatefulWidget {
 }
 
 class _TimeCounterState extends State<TimeCounter> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // timeer();
+  }
+
+  // int counter = 5;
+  // timeer() {
+  //   Timer.periodic(const Duration(seconds: 1), (timer) {
+  //     print(timer.tick);
+  //     counter--;
+  //     if (counter == 0) {
+  //       print('Cancel timer');
+  //       timer.cancel();
+  //     }
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Container(
