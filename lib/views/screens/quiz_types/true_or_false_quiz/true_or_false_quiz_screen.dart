@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:quiz_project_2_0/models/question_model.dart';
 import 'package:quiz_project_2_0/views/constants/colors.dart';
 import 'package:quiz_project_2_0/views/rowData.dart';
 
@@ -14,7 +13,6 @@ class TrueAndFalsequizScreen extends StatefulWidget {
 class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
   int currentQuestionIndex = 0;
   int? selectedOptionIndex;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -139,6 +137,11 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
                         onTapOption: () {
                           setState(() {
                             selectedOptionIndex = 0;
+                            if (rowData.length != currentQuestionIndex + 1) {
+                              currentQuestionIndex += 1;
+                            } else {
+                              currentQuestionIndex = 0;
+                            }
                           });
                         },
                         optionTitle: "True",
@@ -150,6 +153,11 @@ class _TrueAndFalsequizScreenState extends State<TrueAndFalsequizScreen> {
                         onTapOption: () {
                           setState(() {
                             selectedOptionIndex = 1;
+                            if (rowData.length != currentQuestionIndex + 1) {
+                              currentQuestionIndex += 1;
+                            } else {
+                              currentQuestionIndex = 0;
+                            }
                           });
                         },
                         optionTitle: "False",
