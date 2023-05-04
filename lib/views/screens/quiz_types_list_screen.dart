@@ -25,7 +25,7 @@ class QuizTypesListScreen extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const TrueAndFalsequizScreen(),
+                        builder: (context) => const ImageWithFourOptionsQuiz(),
                       ),
                     );
                   },
