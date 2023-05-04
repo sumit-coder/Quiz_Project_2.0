@@ -11,7 +11,7 @@ class MaxWidthAndHeightBound extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Container(
-          constraints: const BoxConstraints(maxWidth: 400),
+          constraints: const BoxConstraints(maxWidth: 380),
           child: child,
         ),
       ],

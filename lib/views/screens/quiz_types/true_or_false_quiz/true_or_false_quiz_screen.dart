@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quiz_project_2_0/models/question_model.dart';
 import 'package:quiz_project_2_0/views/constants/colors.dart';
 import 'package:quiz_project_2_0/views/rowData.dart';
 
